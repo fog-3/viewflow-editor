@@ -16,6 +16,8 @@ export class WorkspaceGraphService {
   private readonly isInitialized = signal(false);
   private isSyncing = false;
   private isSpacePressed = false;
+  private isApplyingViewport = false;
+  private resizeObserver: ResizeObserver | null = null;
 
   constructor(private readonly workspaceStateService: WorkspaceStateService) {}
 
@@ -31,6 +33,10 @@ export class WorkspaceGraphService {
         color: 'transparent',
       },
       autoResize: true,
+      scaling: {
+        min: 0.1,
+        max: 3,
+      },
       panning: false,
       mousewheel: false,
       interacting: {
@@ -68,6 +74,9 @@ export class WorkspaceGraphService {
       },
     });
 
+    this.bindViewportEvents();
+    this.observeContainerSize(container);
+    this.applyViewport(this.workspaceStateService.viewport());
     this.bindGraphEvents();
     this.syncNodesFromState();
     this.graph.use(
@@ -126,6 +135,9 @@ export class WorkspaceGraphService {
   }
   
   destroy(): void {
+    this.resizeObserver?.disconnect();
+    this.resizeObserver = null;
+
     if (this.graph) {
       this.graph.dispose();
       this.graph = null;
@@ -137,6 +149,32 @@ export class WorkspaceGraphService {
 
   getGraph(): Graph | null {
     return this.graph;
+  }
+
+  panBy(deltaX: number, deltaY: number): void {
+    this.graph?.translateBy(deltaX, deltaY);
+  }
+
+  zoomAt(zoom: number, x: number, y: number): void {
+    this.graph?.zoomTo(zoom, {
+      center: { x, y },
+      minScale: 0.1,
+      maxScale: 3,
+    });
+  }
+
+  resetZoom(): void {
+    this.graph?.zoomTo(1, {
+      center: { x: 0, y: 0 },
+      minScale: 0.1,
+      maxScale: 3,
+    });
+  }
+
+  resetViewport(): void {
+    if (!this.graph) return;
+    this.workspaceStateService.setViewport(this.workspaceStateService.initialViewport);
+    this.applyViewport(this.workspaceStateService.initialViewport);
   }
 
   exportPng(fileName = 'viewflow-diagram.png'): void {
@@ -198,6 +236,7 @@ export class WorkspaceGraphService {
     this.isSyncing = true;
     try {
       this.graph.resetCells([]);
+      this.applyViewport(this.workspaceStateService.viewport());
     } finally {
       this.isSyncing = false;
     }
@@ -243,10 +282,49 @@ export class WorkspaceGraphService {
         }
       }
 
+      this.applyViewport(state.viewport);
       this.restoreSelectionFromState();
     } finally {
       this.isSyncing = false;
     }
+  }
+
+  private bindViewportEvents(): void {
+    if (!this.graph) return;
+
+    const syncViewport = () => {
+      if (this.isApplyingViewport || !this.graph) return;
+      const translation = this.graph.translate();
+      this.workspaceStateService.setViewport({
+        x: translation.tx,
+        y: translation.ty,
+        zoom: this.graph.zoom(),
+      });
+    };
+
+    this.graph.on('translate', syncViewport);
+    this.graph.on('scale', syncViewport);
+  }
+
+  private applyViewport(viewport: { x: number; y: number; zoom: number }): void {
+    if (!this.graph) return;
+
+    this.isApplyingViewport = true;
+    try {
+      this.graph.zoomTo(viewport.zoom, { center: { x: 0, y: 0 } });
+      this.graph.translate(viewport.x, viewport.y);
+    } finally {
+      this.isApplyingViewport = false;
+    }
+  }
+
+  private observeContainerSize(container: HTMLDivElement): void {
+    this.resizeObserver?.disconnect();
+    this.resizeObserver = new ResizeObserver(([entry]) => {
+      if (!this.graph || !entry) return;
+      this.graph.resize(entry.contentRect.width, entry.contentRect.height);
+    });
+    this.resizeObserver.observe(container);
   }
 
   private restoreSelectionFromState(): void {

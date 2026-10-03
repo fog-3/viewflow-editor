@@ -1,0 +1,1077 @@
+{
+  "cells": [
+    {
+      "position": {
+        "x": 530,
+        "y": 220
+      },
+      "size": {
+        "width": 140,
+        "height": 80
+      },
+      "attrs": {
+        "body": {
+          "fill": "rgba(0, 0, 0, 0)",
+          "stroke": "#ff8067",
+          "rx": 0,
+          "ry": 0,
+          "strokeWidth": 2,
+          "refPoints": "100,0 200,100 100,200 0,100"
+        },
+        "label": {
+          "text": "It has any error?",
+          "fill": "#ffffff",
+          "fontSize": 14,
+          "fontFamily": "Arial, sans-serif"
+        }
+      },
+      "visible": true,
+      "shape": "polygon",
+      "id": "a733bed7-4eb7-4c9e-9d81-a4ecf8c70831",
+      "ports": {
+        "groups": {
+          "port": {
+            "position": "absolute",
+            "attrs": {
+              "circle": {
+                "r": 3,
+                "magnet": true,
+                "stroke": "#ff8067",
+                "fill": "#fff",
+                "strokeWidth": 1,
+                "visibility": "hidden"
+              },
+              "magnetCircle": {
+                "r": 4,
+                "opacity": 0,
+                "stroke": "#ff8067",
+                "fill": "#ff8067",
+                "strokeWidth": 1,
+                "magnet": true
+              }
+            }
+          }
+        },
+        "items": [
+          {
+            "id": "top",
+            "group": "port",
+            "args": {
+              "x": 70,
+              "y": 0
+            },
+            "attrs": {
+              "circle": {
+                "visibility": "hidden"
+              }
+            }
+          },
+          {
+            "id": "top-right",
+            "group": "port",
+            "args": {
+              "x": 105,
+              "y": 20
+            },
+            "attrs": {
+              "circle": {
+                "visibility": "hidden"
+              }
+            }
+          },
+          {
+            "id": "right",
+            "group": "port",
+            "args": {
+              "x": 140,
+              "y": 40
+            },
+            "attrs": {
+              "circle": {
+                "visibility": "hidden"
+              }
+            }
+          },
+          {
+            "id": "bottom-right",
+            "group": "port",
+            "args": {
+              "x": 105,
+              "y": 60
+            },
+            "attrs": {
+              "circle": {
+                "visibility": "hidden"
+              }
+            }
+          },
+          {
+            "id": "bottom",
+            "group": "port",
+            "args": {
+              "x": 70,
+              "y": 80
+            },
+            "attrs": {
+              "circle": {
+                "visibility": "hidden"
+              }
+            }
+          },
+          {
+            "id": "bottom-left",
+            "group": "port",
+            "args": {
+              "x": 35,
+              "y": 60
+            },
+            "attrs": {
+              "circle": {
+                "visibility": "hidden"
+              }
+            }
+          },
+          {
+            "id": "left",
+            "group": "port",
+            "args": {
+              "x": 0,
+              "y": 40
+            },
+            "attrs": {
+              "circle": {
+                "visibility": "hidden"
+              }
+            }
+          },
+          {
+            "id": "top-left",
+            "group": "port",
+            "args": {
+              "x": 35,
+              "y": 20
+            },
+            "attrs": {
+              "circle": {
+                "visibility": "hidden"
+              }
+            }
+          }
+        ]
+      },
+      "zIndex": 3
+    },
+    {
+      "shape": "edge",
+      "attrs": {
+        "line": {
+          "stroke": "#ff8067",
+          "targetMarker": "cross"
+        }
+      },
+      "id": "2806aff4-1235-47a0-870a-299d04557e30",
+      "connector": {
+        "name": "rounded",
+        "args": {
+          "radius": 0
+        }
+      },
+      "source": {
+        "cell": "a733bed7-4eb7-4c9e-9d81-a4ecf8c70831",
+        "port": "left"
+      },
+      "target": {
+        "cell": "4feffa54-7374-4659-98e0-f65ff12e3311",
+        "port": "top-center"
+      },
+      "zIndex": 4,
+      "vertices": [
+        {
+          "x": 470,
+          "y": 260
+        }
+      ],
+      "radious": 0,
+      "labels": [
+        {
+          "attrs": {
+            "label": {
+              "text": "Yes",
+              "fill": "#000000",
+              "fontSize": 14
+            }
+          },
+          "position": {
+            "distance": 0.21711729028093377,
+            "offset": 10,
+            "angle": 0
+          }
+        }
+      ]
+    },
+    {
+      "shape": "edge",
+      "attrs": {
+        "line": {
+          "stroke": "#ff8067",
+          "targetMarker": "diamond"
+        }
+      },
+      "id": "5d1ca7f0-3987-460f-9bcf-6a0fe1c74579",
+      "connector": {
+        "name": "rounded",
+        "args": {
+          "radius": 0
+        }
+      },
+      "source": {
+        "cell": "a733bed7-4eb7-4c9e-9d81-a4ecf8c70831",
+        "port": "right"
+      },
+      "target": {
+        "cell": "3b551da4-996d-41aa-bdfa-833a20fa95bc",
+        "port": "top-center"
+      },
+      "zIndex": 5,
+      "vertices": [
+        {
+          "x": 720,
+          "y": 260
+        }
+      ],
+      "radious": 0,
+      "labels": [
+        {
+          "attrs": {
+            "label": {
+              "text": "No",
+              "fill": "#000000",
+              "fontSize": 14
+            }
+          },
+          "position": {
+            "distance": 0.17218399850709978,
+            "offset": -10,
+            "angle": 0
+          }
+        }
+      ]
+    },
+    {
+      "position": {
+        "x": 520,
+        "y": 100
+      },
+      "size": {
+        "width": 160,
+        "height": 50
+      },
+      "attrs": {
+        "body": {
+          "fill": "rgba(0, 0, 0, 0)",
+          "stroke": "#ff8067",
+          "rx": 0,
+          "ry": 0,
+          "strokeWidth": 2
+        },
+        "label": {
+          "text": "Running the process",
+          "fill": "#ffffff",
+          "fontSize": 14,
+          "fontFamily": "Arial, sans-serif"
+        }
+      },
+      "visible": true,
+      "shape": "rect",
+      "id": "bc122e48-e078-4917-8f1f-cb9ee0fb4ab6",
+      "ports": {
+        "groups": {
+          "port": {
+            "position": "absolute",
+            "attrs": {
+              "circle": {
+                "r": 3,
+                "magnet": true,
+                "stroke": "#ff8067",
+                "fill": "#fff",
+                "strokeWidth": 1,
+                "visibility": "hidden"
+              },
+              "magnetCircle": {
+                "r": 4,
+                "opacity": 0,
+                "stroke": "#ff8067",
+                "fill": "#ff8067",
+                "strokeWidth": 1,
+                "magnet": true
+              }
+            }
+          }
+        },
+        "items": [
+          {
+            "id": "top-center",
+            "group": "port",
+            "args": {
+              "x": 80,
+              "y": 0
+            },
+            "attrs": {
+              "circle": {
+                "visibility": "hidden"
+              }
+            }
+          },
+          {
+            "id": "top-left",
+            "group": "port",
+            "args": {
+              "x": 40,
+              "y": 0
+            },
+            "attrs": {
+              "circle": {
+                "visibility": "hidden"
+              }
+            }
+          },
+          {
+            "id": "top-right",
+            "group": "port",
+            "args": {
+              "x": 120,
+              "y": 0
+            },
+            "attrs": {
+              "circle": {
+                "visibility": "hidden"
+              }
+            }
+          },
+          {
+            "id": "left-center",
+            "group": "port",
+            "args": {
+              "x": 0,
+              "y": 25
+            },
+            "attrs": {
+              "circle": {
+                "visibility": "hidden"
+              }
+            }
+          },
+          {
+            "id": "left-top",
+            "group": "port",
+            "args": {
+              "x": 0,
+              "y": 12.5
+            },
+            "attrs": {
+              "circle": {
+                "visibility": "hidden"
+              }
+            }
+          },
+          {
+            "id": "left-bottom",
+            "group": "port",
+            "args": {
+              "x": 0,
+              "y": 37.5
+            },
+            "attrs": {
+              "circle": {
+                "visibility": "hidden"
+              }
+            }
+          },
+          {
+            "id": "bottom-center",
+            "group": "port",
+            "args": {
+              "x": 80,
+              "y": 50
+            },
+            "attrs": {
+              "circle": {
+                "visibility": "hidden"
+              }
+            }
+          },
+          {
+            "id": "bottom-left",
+            "group": "port",
+            "args": {
+              "x": 40,
+              "y": 50
+            },
+            "attrs": {
+              "circle": {
+                "visibility": "hidden"
+              }
+            }
+          },
+          {
+            "id": "bottom-right",
+            "group": "port",
+            "args": {
+              "x": 120,
+              "y": 50
+            },
+            "attrs": {
+              "circle": {
+                "visibility": "hidden"
+              }
+            }
+          },
+          {
+            "id": "right-center",
+            "group": "port",
+            "args": {
+              "x": 160,
+              "y": 25
+            },
+            "attrs": {
+              "circle": {
+                "visibility": "hidden"
+              }
+            }
+          },
+          {
+            "id": "right-bottom",
+            "group": "port",
+            "args": {
+              "x": 160,
+              "y": 37.5
+            },
+            "attrs": {
+              "circle": {
+                "visibility": "hidden"
+              }
+            }
+          },
+          {
+            "id": "right-top",
+            "group": "port",
+            "args": {
+              "x": 160,
+              "y": 12.5
+            },
+            "attrs": {
+              "circle": {
+                "visibility": "hidden"
+              }
+            }
+          },
+          {
+            "id": "corner-top-left",
+            "group": "port",
+            "args": {
+              "x": 0,
+              "y": 0
+            },
+            "attrs": {
+              "circle": {
+                "visibility": "hidden"
+              }
+            }
+          },
+          {
+            "id": "corner-top-right",
+            "group": "port",
+            "args": {
+              "x": 160,
+              "y": 0
+            },
+            "attrs": {
+              "circle": {
+                "visibility": "hidden"
+              }
+            }
+          },
+          {
+            "id": "corner-bottom-left",
+            "group": "port",
+            "args": {
+              "x": 0,
+              "y": 50
+            },
+            "attrs": {
+              "circle": {
+                "visibility": "hidden"
+              }
+            }
+          },
+          {
+            "id": "corner-bottom-right",
+            "group": "port",
+            "args": {
+              "x": 160,
+              "y": 50
+            },
+            "attrs": {
+              "circle": {
+                "visibility": "hidden"
+              }
+            }
+          }
+        ]
+      },
+      "zIndex": 6
+    },
+    {
+      "shape": "edge",
+      "attrs": {
+        "line": {
+          "stroke": "#ff8067"
+        }
+      },
+      "id": "1d24804d-c06a-4f9e-8c7e-9bc953dfaea5",
+      "connector": {
+        "name": "rounded",
+        "args": {
+          "radius": 0
+        }
+      },
+      "source": {
+        "cell": "bc122e48-e078-4917-8f1f-cb9ee0fb4ab6",
+        "port": "bottom-center"
+      },
+      "target": {
+        "cell": "a733bed7-4eb7-4c9e-9d81-a4ecf8c70831",
+        "port": "top"
+      },
+      "zIndex": 7
+    },
+    {
+      "position": {
+        "x": 410,
+        "y": 390
+      },
+      "size": {
+        "width": 120,
+        "height": 60
+      },
+      "attrs": {
+        "body": {
+          "fill": "rgba(0, 0, 0, 0)",
+          "stroke": "#ff8067",
+          "rx": 10,
+          "ry": 10,
+          "strokeWidth": 2
+        },
+        "label": {
+          "text": "Process failed",
+          "fill": "#ffffff",
+          "fontSize": 14,
+          "fontFamily": "Arial, sans-serif"
+        }
+      },
+      "visible": true,
+      "shape": "rect",
+      "id": "4feffa54-7374-4659-98e0-f65ff12e3311",
+      "ports": {
+        "groups": {
+          "port": {
+            "position": "absolute",
+            "attrs": {
+              "circle": {
+                "r": 3,
+                "magnet": true,
+                "stroke": "#ff8067",
+                "fill": "#fff",
+                "strokeWidth": 1,
+                "visibility": "hidden"
+              },
+              "magnetCircle": {
+                "r": 4,
+                "opacity": 0,
+                "stroke": "#ff8067",
+                "fill": "#ff8067",
+                "strokeWidth": 1,
+                "magnet": true
+              }
+            }
+          }
+        },
+        "items": [
+          {
+            "id": "top-center",
+            "group": "port",
+            "args": {
+              "x": 60,
+              "y": 0
+            },
+            "attrs": {
+              "circle": {
+                "visibility": "hidden"
+              }
+            }
+          },
+          {
+            "id": "top-left",
+            "group": "port",
+            "args": {
+              "x": 30,
+              "y": 0
+            },
+            "attrs": {
+              "circle": {
+                "visibility": "hidden"
+              }
+            }
+          },
+          {
+            "id": "top-right",
+            "group": "port",
+            "args": {
+              "x": 90,
+              "y": 0
+            },
+            "attrs": {
+              "circle": {
+                "visibility": "hidden"
+              }
+            }
+          },
+          {
+            "id": "left-center",
+            "group": "port",
+            "args": {
+              "x": 0,
+              "y": 30
+            },
+            "attrs": {
+              "circle": {
+                "visibility": "hidden"
+              }
+            }
+          },
+          {
+            "id": "left-top",
+            "group": "port",
+            "args": {
+              "x": 0,
+              "y": 15
+            },
+            "attrs": {
+              "circle": {
+                "visibility": "hidden"
+              }
+            }
+          },
+          {
+            "id": "left-bottom",
+            "group": "port",
+            "args": {
+              "x": 0,
+              "y": 45
+            },
+            "attrs": {
+              "circle": {
+                "visibility": "hidden"
+              }
+            }
+          },
+          {
+            "id": "bottom-center",
+            "group": "port",
+            "args": {
+              "x": 60,
+              "y": 60
+            },
+            "attrs": {
+              "circle": {
+                "visibility": "hidden"
+              }
+            }
+          },
+          {
+            "id": "bottom-left",
+            "group": "port",
+            "args": {
+              "x": 30,
+              "y": 60
+            },
+            "attrs": {
+              "circle": {
+                "visibility": "hidden"
+              }
+            }
+          },
+          {
+            "id": "bottom-right",
+            "group": "port",
+            "args": {
+              "x": 90,
+              "y": 60
+            },
+            "attrs": {
+              "circle": {
+                "visibility": "hidden"
+              }
+            }
+          },
+          {
+            "id": "right-center",
+            "group": "port",
+            "args": {
+              "x": 120,
+              "y": 30
+            },
+            "attrs": {
+              "circle": {
+                "visibility": "hidden"
+              }
+            }
+          },
+          {
+            "id": "right-bottom",
+            "group": "port",
+            "args": {
+              "x": 120,
+              "y": 45
+            },
+            "attrs": {
+              "circle": {
+                "visibility": "hidden"
+              }
+            }
+          },
+          {
+            "id": "right-top",
+            "group": "port",
+            "args": {
+              "x": 120,
+              "y": 15
+            },
+            "attrs": {
+              "circle": {
+                "visibility": "hidden"
+              }
+            }
+          },
+          {
+            "id": "corner-top-left",
+            "group": "port",
+            "args": {
+              "x": 0,
+              "y": 0
+            },
+            "attrs": {
+              "circle": {
+                "visibility": "hidden"
+              }
+            }
+          },
+          {
+            "id": "corner-top-right",
+            "group": "port",
+            "args": {
+              "x": 120,
+              "y": 0
+            },
+            "attrs": {
+              "circle": {
+                "visibility": "hidden"
+              }
+            }
+          },
+          {
+            "id": "corner-bottom-left",
+            "group": "port",
+            "args": {
+              "x": 0,
+              "y": 60
+            },
+            "attrs": {
+              "circle": {
+                "visibility": "hidden"
+              }
+            }
+          },
+          {
+            "id": "corner-bottom-right",
+            "group": "port",
+            "args": {
+              "x": 120,
+              "y": 60
+            },
+            "attrs": {
+              "circle": {
+                "visibility": "hidden"
+              }
+            }
+          }
+        ]
+      },
+      "zIndex": 8
+    },
+    {
+      "position": {
+        "x": 660,
+        "y": 390
+      },
+      "size": {
+        "width": 120,
+        "height": 60
+      },
+      "attrs": {
+        "body": {
+          "fill": "rgba(0, 0, 0, 0)",
+          "stroke": "#ff8067",
+          "rx": 10,
+          "ry": 10,
+          "strokeWidth": 2
+        },
+        "label": {
+          "text": "Process passed",
+          "fill": "#ffffff",
+          "fontSize": 14,
+          "fontFamily": "Arial, sans-serif"
+        }
+      },
+      "visible": true,
+      "shape": "rect",
+      "id": "3b551da4-996d-41aa-bdfa-833a20fa95bc",
+      "ports": {
+        "groups": {
+          "port": {
+            "position": "absolute",
+            "attrs": {
+              "circle": {
+                "r": 3,
+                "magnet": true,
+                "stroke": "#ff8067",
+                "fill": "#fff",
+                "strokeWidth": 1,
+                "visibility": "hidden"
+              },
+              "magnetCircle": {
+                "r": 4,
+                "opacity": 0,
+                "stroke": "#ff8067",
+                "fill": "#ff8067",
+                "strokeWidth": 1,
+                "magnet": true
+              }
+            }
+          }
+        },
+        "items": [
+          {
+            "id": "top-center",
+            "group": "port",
+            "args": {
+              "x": 60,
+              "y": 0
+            },
+            "attrs": {
+              "circle": {
+                "visibility": "hidden"
+              }
+            }
+          },
+          {
+            "id": "top-left",
+            "group": "port",
+            "args": {
+              "x": 30,
+              "y": 0
+            },
+            "attrs": {
+              "circle": {
+                "visibility": "hidden"
+              }
+            }
+          },
+          {
+            "id": "top-right",
+            "group": "port",
+            "args": {
+              "x": 90,
+              "y": 0
+            },
+            "attrs": {
+              "circle": {
+                "visibility": "hidden"
+              }
+            }
+          },
+          {
+            "id": "left-center",
+            "group": "port",
+            "args": {
+              "x": 0,
+              "y": 30
+            },
+            "attrs": {
+              "circle": {
+                "visibility": "hidden"
+              }
+            }
+          },
+          {
+            "id": "left-top",
+            "group": "port",
+            "args": {
+              "x": 0,
+              "y": 15
+            },
+            "attrs": {
+              "circle": {
+                "visibility": "hidden"
+              }
+            }
+          },
+          {
+            "id": "left-bottom",
+            "group": "port",
+            "args": {
+              "x": 0,
+              "y": 45
+            },
+            "attrs": {
+              "circle": {
+                "visibility": "hidden"
+              }
+            }
+          },
+          {
+            "id": "bottom-center",
+            "group": "port",
+            "args": {
+              "x": 60,
+              "y": 60
+            },
+            "attrs": {
+              "circle": {
+                "visibility": "hidden"
+              }
+            }
+          },
+          {
+            "id": "bottom-left",
+            "group": "port",
+            "args": {
+              "x": 30,
+              "y": 60
+            },
+            "attrs": {
+              "circle": {
+                "visibility": "hidden"
+              }
+            }
+          },
+          {
+            "id": "bottom-right",
+            "group": "port",
+            "args": {
+              "x": 90,
+              "y": 60
+            },
+            "attrs": {
+              "circle": {
+                "visibility": "hidden"
+              }
+            }
+          },
+          {
+            "id": "right-center",
+            "group": "port",
+            "args": {
+              "x": 120,
+              "y": 30
+            },
+            "attrs": {
+              "circle": {
+                "visibility": "hidden"
+              }
+            }
+          },
+          {
+            "id": "right-bottom",
+            "group": "port",
+            "args": {
+              "x": 120,
+              "y": 45
+            },
+            "attrs": {
+              "circle": {
+                "visibility": "hidden"
+              }
+            }
+          },
+          {
+            "id": "right-top",
+            "group": "port",
+            "args": {
+              "x": 120,
+              "y": 15
+            },
+            "attrs": {
+              "circle": {
+                "visibility": "hidden"
+              }
+            }
+          },
+          {
+            "id": "corner-top-left",
+            "group": "port",
+            "args": {
+              "x": 0,
+              "y": 0
+            },
+            "attrs": {
+              "circle": {
+                "visibility": "hidden"
+              }
+            }
+          },
+          {
+            "id": "corner-top-right",
+            "group": "port",
+            "args": {
+              "x": 120,
+              "y": 0
+            },
+            "attrs": {
+              "circle": {
+                "visibility": "hidden"
+              }
+            }
+          },
+          {
+            "id": "corner-bottom-left",
+            "group": "port",
+            "args": {
+              "x": 0,
+              "y": 60
+            },
+            "attrs": {
+              "circle": {
+                "visibility": "hidden"
+              }
+            }
+          },
+          {
+            "id": "corner-bottom-right",
+            "group": "port",
+            "args": {
+              "x": 120,
+              "y": 60
+            },
+            "attrs": {
+              "circle": {
+                "visibility": "hidden"
+              }
+            }
+          }
+        ]
+      },
+      "zIndex": 9
+    }
+  ]
+}

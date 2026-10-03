@@ -106,6 +106,8 @@ export class WorkspaceCanvas {
     if (!this.spacePressed() || event.button !== 0) return;
 
     const viewportEl = this.canvasViewport.nativeElement;
+    if (!viewportEl.contains(event.target as Node)) return;
+
     const rect = viewportEl.getBoundingClientRect();
 
     // Solo empezar si el click ocurre dentro del viewport visible
@@ -119,6 +121,7 @@ export class WorkspaceCanvas {
     }
 
     this.isPanning.set(true);
+    (event.currentTarget as HTMLElement).setPointerCapture(event.pointerId);
     this.lastPointerX = event.clientX;
     this.lastPointerY = event.clientY;
   }
@@ -126,58 +129,44 @@ export class WorkspaceCanvas {
   onPointerMove(event: PointerEvent): void {
     if (!this.isPanning()) return;
 
-    const viewportEl = this.canvasViewport.nativeElement;
-    const rect = viewportEl.getBoundingClientRect();
-
-    // Si sale del área visible, parar el pan
-    if (
-      event.clientX < rect.left ||
-      event.clientX > rect.right ||
-      event.clientY < rect.top ||
-      event.clientY > rect.bottom
-    ) {
-      this.isPanning.set(false);
-      return;
-    }
-
     const deltaX = event.clientX - this.lastPointerX;
     const deltaY = event.clientY - this.lastPointerY;
 
-    this.workspaceStateService.panViewport(deltaX, deltaY);
+    this.workspaceGraphService.panBy(deltaX, deltaY);
 
     this.lastPointerX = event.clientX;
     this.lastPointerY = event.clientY;
   }
 
-  onPointerUp(): void {
+  onPointerUp(event?: PointerEvent): void {
     this.isPanning.set(false);
+    const target = event?.currentTarget as HTMLElement | null;
+    if (event && target?.hasPointerCapture(event.pointerId)) {
+      target.releasePointerCapture(event.pointerId);
+    }
   }
 
   onWheel(event: WheelEvent): void {
+    if (!this.canvasViewport.nativeElement.contains(event.target as Node)) return;
+
     event.preventDefault();
 
-    const viewportEl = this.canvasViewport.nativeElement;
-    const rect = viewportEl.getBoundingClientRect();
+    const rect = this.graphContainer.nativeElement.getBoundingClientRect();
 
     const mouseX = event.clientX - rect.left;
     const mouseY = event.clientY - rect.top;
-
-    if (event.deltaY < 0) {
-      this.workspaceStateService.zoomIn(mouseX, mouseY);
-    } else {
-      this.workspaceStateService.zoomOut(mouseX, mouseY);
-    }
+    const currentZoom = this.workspaceStateService.viewport().zoom;
+    const nextZoom = currentZoom + (event.deltaY < 0 ? 0.1 : -0.1);
+    this.workspaceGraphService.zoomAt(nextZoom, mouseX, mouseY);
   }
 
   gridBackgroundPosition(): string {
     const { x, y, zoom } = this.workspaceStateService.viewport();
     const baseCellSize = 22;
 
-    const worldX = x / zoom;
-    const worldY = y / zoom;
-
-    const offsetX = ((worldX % baseCellSize) + baseCellSize) % baseCellSize * zoom;
-    const offsetY = ((worldY % baseCellSize) + baseCellSize) % baseCellSize * zoom;
+    const cellSize = baseCellSize * zoom;
+    const offsetX = ((x % cellSize) + cellSize) % cellSize;
+    const offsetY = ((y % cellSize) + cellSize) % cellSize;
 
     return `${offsetX}px ${offsetY}px`;
   }
@@ -189,7 +178,11 @@ export class WorkspaceCanvas {
   }
 
   resetZoom() {
-    this.workspaceStateService.resetZoom();
+    this.workspaceGraphService.resetZoom();
+  }
+
+  resetViewport(): void {
+    this.workspaceGraphService.resetViewport();
   }
 
   isResetViewport() {

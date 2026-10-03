@@ -5,19 +5,19 @@
   [class.is-panning]="isPanning()"
   (pointerdown)="onPointerDown($event)"
   (pointermove)="onPointerMove($event)"
-  (pointerup)="onPointerUp()"
-  (pointerleave)="onPointerUp()"
+  (pointerup)="onPointerUp($event)"
+  (pointercancel)="onPointerUp($event)"
   (wheel)="onWheel($event)"
 >
   <div class="canvas-toolbar">
-	@if (isResetViewport()) {
-		<span>Canvas</span>
-	} @else {
-		<span class="zoom-level" (click)="workspaceStateService.resetViewport()">Reset</span>
-	}
-    <span class="zoom-level" (click)="resetZoom()">
+  @if (isResetViewport()) {
+    <span>Canvas</span>
+  } @else {
+    <button class="zoom-level" type="button" (click)="resetViewport()">Reset</button>
+  }
+  <button class="zoom-level" type="button" (click)="resetZoom()">
       {{ (workspaceStateService.viewport().zoom * 100) | number:'1.0-0' }}%
-    </span>
+  </button>
   </div>
 
   <div #canvasViewport class="canvas-viewport">
@@ -29,15 +29,11 @@
       [style.backgroundSize]="gridBackgroundSize()">
     </div>
 
-    <div
-      class="canvas-map"
-      [style.transform]="'translate(' + workspaceStateService.viewport().x + 'px, ' + workspaceStateService.viewport().y + 'px) scale(' + workspaceStateService.viewport().zoom + ')'">
-      <div #graphContainer class="graph-container"></div>
-    </div>
+    <div #graphContainer class="graph-container"></div>
   </div>
 
   @if (!workspaceUiService.sidebarOpen()) {
-    <div class="canvas-empty-state">
+    <div class="canvas-empty-state z-50">
       <button
         class="canvas-open-button"
         type="button"

@@ -12,6 +12,7 @@ export class WorkspaceHistoryService {
   private readonly maxSnapshots = 100;
   private readonly storageKey = 'viewflow-workspace';
   private readonly version = signal(0);
+  readonly title = signal('Untitled flow');
 
   readonly canUndo = computed(() => this.version() >= 0 && this.history.length > 0);
   readonly canRedo = computed(() => this.version() >= 0 && this.future.length > 0);
@@ -26,6 +27,12 @@ export class WorkspaceHistoryService {
 
   saveCurrent(state: WorkspaceState): void {
     this.current = structuredClone(state);
+    this.persist();
+  }
+
+  setTitle(title: string): void {
+    if (this.title() === title) return;
+    this.title.set(title);
     this.persist();
   }
 
@@ -86,6 +93,7 @@ export class WorkspaceHistoryService {
 
       const storage = JSON.parse(rawStorage) as Partial<WorkspaceStorage>;
       this.current = storage.current ? structuredClone(storage.current) : null;
+      this.title.set(storage.title?.trim() || 'Untitled flow');
       this.history.push(...(storage.history ?? []).map(snapshot => structuredClone(snapshot)));
       this.future.push(...(storage.future ?? []).map(snapshot => structuredClone(snapshot)));
     } catch {
@@ -102,6 +110,7 @@ export class WorkspaceHistoryService {
       current: this.current,
       history: this.history,
       future: this.future,
+      title: this.title(),
     };
 
     localStorage.setItem(this.storageKey, JSON.stringify(storage));

@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { WorkspaceGraphService } from '../../../services/workspace-graph.service';
+import { WorkspaceStateService } from '../../../services/WorkspaceState.service';
 
 @Component({
   selector: 'app-export-menu',
@@ -9,15 +10,23 @@ import { WorkspaceGraphService } from '../../../services/workspace-graph.service
 })
 export class ExportMenu {
   private readonly workspaceGraphService = inject(WorkspaceGraphService);
+  private readonly workspaceStateService = inject(WorkspaceStateService);
 
   exportJson(): void {
     const content = JSON.stringify(this.workspaceGraphService.exportJson(), null, 2);
     const blob = new Blob([content], { type: 'application/json' });
-    this.download(blob, 'viewflow-diagram.json');
+    this.download(blob, `${this.getSafeTitle()}.json`);
   }
 
   exportPng(): void {
-    this.workspaceGraphService.exportPng();
+    this.workspaceGraphService.exportPng(`${this.getSafeTitle()}.png`);
+  }
+
+  private getSafeTitle(): string {
+    return this.workspaceStateService.workspaceTitle()
+      .trim()
+      .replace(/[<>:"/\\|?*\u0000-\u001f]/g, '-')
+      .replace(/[. ]+$/g, '') || 'Untitled flow';
   }
 
   private download(blob: Blob, fileName: string): void {

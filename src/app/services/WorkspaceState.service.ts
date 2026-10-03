@@ -15,10 +15,6 @@ export class WorkspaceStateService {
         zoom: 1,
     };
     
-    private readonly zoomStep = 0.1;
-    private readonly minZoom = 0.1;
-    private readonly maxZoom = 3 ;
-
     private readonly state = signal<WorkspaceState>(this.workspaceHistoryService.getCurrent() ?? {
         nodes: [],
         edges: [],
@@ -30,6 +26,7 @@ export class WorkspaceStateService {
     });
 
     readonly workspaceState = this.state.asReadonly();
+    readonly workspaceTitle = computed(() => this.workspaceHistoryService.title());
 
     readonly nodes = computed(() => this.state().nodes);
     readonly edges = computed(() => this.state().edges);
@@ -47,6 +44,10 @@ export class WorkspaceStateService {
         return this.state();
     }
 
+    setWorkspaceTitle(title: string): void {
+        this.workspaceHistoryService.setTitle(title.trim() || 'Untitled flow');
+    }
+
     setState(newState: WorkspaceState) {
         const nextState = structuredClone(newState);
         this.state.set(nextState);
@@ -54,13 +55,15 @@ export class WorkspaceStateService {
     }
 
     setViewport(viewport: Partial<WorkspaceViewport>): void {
-        this.updateState(current => ({
-        ...current,
-        viewport: {
-            ...current.viewport,
-            ...viewport,
-        },
-        }), false);
+        const current = this.state();
+        const nextViewport = { ...current.viewport, ...viewport };
+        if (current.viewport.x === nextViewport.x
+            && current.viewport.y === nextViewport.y
+            && current.viewport.zoom === nextViewport.zoom) return;
+
+        const nextState = { ...current, viewport: nextViewport };
+        this.state.set(nextState);
+        this.workspaceHistoryService.saveCurrent(nextState);
     }
 
     resetWorkspace(): void {
@@ -75,85 +78,6 @@ export class WorkspaceStateService {
         }));
     }
 
-    resetViewport(): void {
-        this.updateState(current => ({
-        ...current,
-        viewport: { ...this.initialViewport },
-        }), false);
-    }
-
-    centerViewport(containerWidth: number, containerHeight: number): void {
-        this.updateState(current => ({
-        ...current,
-        viewport: {
-            ...current.viewport,
-            x: containerWidth / 2,
-            y: containerHeight / 2,
-        },
-        }), false);
-    }
-
-    zoomIn(mouseX?: number, mouseY?: number): void {
-        this.zoomBy(+this.zoomStep, mouseX, mouseY);
-    }
-
-    zoomOut(mouseX?: number, mouseY?: number): void {
-        this.zoomBy(-this.zoomStep, mouseX, mouseY);
-    }
-
-    private zoomBy(delta: number, mouseX?: number, mouseY?: number): void {
-        this.updateState(current => {
-        const viewport = current.viewport;
-        const oldZoom = viewport.zoom;
-        const newZoom = this.clamp(oldZoom + delta, this.minZoom, this.maxZoom);
-
-        // Si no hay coordenadas del ratón, solo cambiamos el zoom
-        if (mouseX === undefined || mouseY === undefined) {
-            return {
-            ...current,
-            viewport: {
-                ...viewport,
-                zoom: newZoom,
-            },
-            };
-        }
-
-        const worldX = (mouseX - viewport.x) / oldZoom;
-        const worldY = (mouseY - viewport.y) / oldZoom;
-
-        const newX = mouseX - worldX * newZoom;
-        const newY = mouseY - worldY * newZoom;
-
-        return {
-            ...current,
-            viewport: {
-            x: newX,
-            y: newY,
-            zoom: newZoom,
-            },
-        };
-        }, false);
-    }
-
-    panViewport(deltaX: number, deltaY: number): void {
-        this.updateState(current => {
-            const zoom = current.viewport.zoom || 1;
-
-            return {
-                ...current,
-                viewport: {
-                ...current.viewport,
-                x: current.viewport.x + deltaX,
-                y: current.viewport.y + deltaY,
-                },
-            }
-        }, false);
-    }
-
-    private clamp(value: number, min: number, max: number): number {
-        return Math.max(min, Math.min(max, value));
-    }
-
     isResetViewport() {
         const currentViewport = this.state().viewport;
         return (
@@ -161,16 +85,6 @@ export class WorkspaceStateService {
         currentViewport.y === this.initialViewport.y &&
         currentViewport.zoom === this.initialViewport.zoom
         ); 
-    }
-
-    resetZoom(): void {
-        this.updateState(current => ({
-            ...current,
-            viewport: {
-                ...current.viewport,
-                zoom: 1,
-            },
-        }), false);
     }
 
     isSomethingSelected(): boolean {
@@ -287,16 +201,14 @@ export class WorkspaceStateService {
         }));
     }
 
-    private updateState(update: (current: WorkspaceState) => WorkspaceState, recordHistory = true): void {
+    private updateState(update: (current: WorkspaceState) => WorkspaceState): void {
         const currentState = this.state();
         const nextState = update(currentState);
         
         if (JSON.stringify(currentState) === JSON.stringify(nextState)) return;
         this.workspaceHistoryService.clearFuture();
 
-        if (recordHistory) {
-            this.workspaceHistoryService.record(currentState);
-        }
+        this.workspaceHistoryService.record(currentState);
 
         this.state.set(nextState);
         this.workspaceHistoryService.saveCurrent(nextState);

@@ -19,4 +19,25 @@ import { WorkspaceStateService } from '../../services/WorkspaceState.service';
 export default class WorkspacePage {
   readonly workspaceUiService = inject(WorkspaceUiService);
   readonly workspaceStateService = inject(WorkspaceStateService);
+  isEditingTitle = false;
+  titleDraft = '';
+
+  startTitleEdit(): void {
+    this.titleDraft = this.workspaceStateService.workspaceTitle();
+    this.isEditingTitle = true;
+  }
+
+  updateTitleDraft(event: Event): void {
+    this.titleDraft = (event.target as HTMLInputElement).value;
+  }
+
+  saveTitle(): void {
+    if (!this.isEditingTitle) return;
+    this.workspaceStateService.setWorkspaceTitle(this.titleDraft);
+    this.isEditingTitle = false;
+  }
+
+  cancelTitleEdit(): void {
+    this.isEditingTitle = false;
+  }
 }

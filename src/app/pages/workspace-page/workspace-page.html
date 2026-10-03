@@ -4,7 +4,25 @@
 			<span class="brand-mark" aria-hidden="true">vf</span>
 			<span>ViewFlow</span>
 		</a>
-		<div class="workspace-title"><span class="workspace-status"></span> Untitled flow</div>
+		<div class="workspace-title">
+			<span class="workspace-status" role="img" aria-label="Changes saved locally"></span>
+			@if (isEditingTitle) {
+				<input
+					class="workspace-title-input"
+					type="text"
+					[value]="titleDraft"
+					(input)="updateTitleDraft($event)"
+					(keydown.enter)="saveTitle()"
+					(keydown.escape)="cancelTitleEdit()"
+					(blur)="saveTitle()"
+					aria-label="Flow title"
+					autofocus />
+			} @else {
+				<button class="workspace-title-button" type="button" (click)="startTitleEdit()" aria-label="Edit flow title">
+					{{ workspaceStateService.workspaceTitle() }}
+				</button>
+			}
+		</div>
 		<div class="workspace-toolbar">
 			<app-undo-redo-controls />
 			<app-import-menu />
