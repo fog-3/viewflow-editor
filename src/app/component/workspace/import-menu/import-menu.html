@@ -1,0 +1,11 @@
+<button class="toolbar-button" type="button" (click)="openFilePicker()">
+	<span aria-hidden="true">&#8593;</span> Import JSON
+</button>
+<input
+	#fileInput
+	type="file"
+	accept="application/json,.json"
+	 aria-label="Choose a ViewFlow JSON workspace"
+	 hidden
+	(change)="importJson($event)"
+>

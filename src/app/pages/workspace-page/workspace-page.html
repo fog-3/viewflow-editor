@@ -1,0 +1,31 @@
+<div class="workspace-shell">
+	<header class="workspace-topbar">
+		<a class="workspace-brand" routerLink="/" aria-label="Back to ViewFlow home">
+			<span class="brand-mark" aria-hidden="true">vf</span>
+			<span>ViewFlow</span>
+		</a>
+		<div class="workspace-title"><span class="workspace-status"></span> Untitled flow</div>
+		<div class="workspace-toolbar">
+			<app-undo-redo-controls />
+			<app-import-menu />
+			<app-export-menu />
+			<app-theme-toggle />
+		</div>
+	</header>
+
+	<div
+		class="workspace-layout"
+		[class.with-sidebar]="workspaceUiService.sidebarOpen()"
+		[class.with-properties]="workspaceStateService.isSomethingSelected()">
+		<app-workspace-sidebar [class.is-collapsed]="!workspaceUiService.sidebarOpen()" />
+		<main class="workspace-main" aria-label="Diagram workspace">
+			<app-workspace-canvas />
+		</main>
+		@if (workspaceStateService.isSomethingSelected()) {
+			<app-properties-panel 
+				[nodeSelected]="workspaceStateService.selectedNode()"
+				[edgeSelected]="workspaceStateService.selectedEdge()"
+			/>
+		}
+	</div>
+</div>

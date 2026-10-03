@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="27"
+     height="27"
+     viewBox="0 0 27 27">
+  <style>
+    :root {
+      --mark-ink: #17201d;
+      --mark-paper: #f6f3ec;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --mark-ink: #f1efe6;
+        --mark-paper: #18201d;
+      }
+    }
+  </style>
+
+  <g transform="rotate(-9 13.5 13.5)">
+    <circle cx="13.5" cy="13.5" r="13.5" fill="var(--mark-ink)"/>
+    <text
+      x="12.5"
+      y="18"
+      text-anchor="middle"
+      fill="var(--mark-paper)"
+      font-family="Georgia, serif"
+      font-size="14"
+      font-weight="700"
+      letter-spacing="-1.4">
+      vf
+    </text>
+  </g>
+</svg>

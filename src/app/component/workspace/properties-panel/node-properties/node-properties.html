@@ -1,0 +1,81 @@
+<div class="node-editor">
+	<details class="editor-section" open>
+		<summary class="property-label">Content</summary>
+		<label class="editor-field editor-field-wide">
+			<span>Label</span>
+			<input
+                id="label-editor"
+				class="editor-input"
+				type="text"
+				[value]="nodeSelected().label"
+				aria-label="Node label"
+				(input)="updateLabel($any($event.target).value)" />
+		</label>
+	</details>
+
+	<details class="editor-section">
+		<summary class="property-label">Geometry</summary>
+		<div class="editor-grid">
+			<label class="editor-field">
+				<span>X</span>
+				<input class="editor-input" type="number" min="0" [value]="nodeSelected().x" aria-label="X position" (input)="updateNumber('x', $any($event.target).value)" />
+			</label>
+			<label class="editor-field">
+				<span>Y</span>
+				<input class="editor-input" type="number" min="0" [value]="nodeSelected().y" aria-label="Y position" (input)="updateNumber('y', $any($event.target).value)" />
+			</label>
+			<label class="editor-field">
+				<span>Width</span>
+				<input class="editor-input" type="number" min="20" [value]="nodeSelected().width" aria-label="Node width" (input)="updateNumber('width', $any($event.target).value)" />
+			</label>
+			<label class="editor-field">
+				<span>Height</span>
+				<input class="editor-input" type="number" min="20" [value]="nodeSelected().height" aria-label="Node height" (input)="updateNumber('height', $any($event.target).value)" />
+			</label>
+		</div>
+		<label class="editor-field editor-field-wide">
+			<span>Angle</span>
+			<input class="editor-input" type="number" min="-360" max="360" [value]="nodeSelected().angle ?? 0" aria-label="Node angle" (input)="updateNumber('angle', $any($event.target).value)" />
+		</label>
+	</details>
+
+	<details class="editor-section">
+		<summary class="property-label">Style</summary>
+		<label class="editor-field editor-field-wide">
+			<span>Shape</span>
+			<select class="editor-input" [value]="nodeSelected().shape" aria-label="Node shape" (change)="updateShape($any($event.target).value)">
+				@for (option of shapeOptions; track option.value) {
+					<option [value]="option.value">{{ option.label }}</option>
+				}
+			</select>
+		</label>
+		<label class="editor-field editor-field-color">
+			<span>Fill</span>
+			<span class="editor-value">{{ nodeSelected().fillColor }}</span>
+			<input class="editor-color" type="color" [value]="nodeSelected().fillColor" aria-label="Fill color" (input)="updateFillColor($any($event.target).value)" />
+		</label>
+		<label class="editor-field editor-field-color">
+			<span>Border</span>
+			<span class="editor-value">{{ nodeSelected().borderColor }}</span>
+			<input class="editor-color" type="color" [value]="nodeSelected().borderColor" aria-label="Border color" (input)="updateBorderColor($any($event.target).value)" />
+		</label>
+		<label class="editor-field editor-field-color">
+			<span>Text</span>
+			<span class="editor-value">{{ nodeSelected().textColor }}</span>
+			<input class="editor-color" type="color" [value]="nodeSelected().textColor" aria-label="Text color" (input)="updateTextColor($any($event.target).value)" />
+		</label>
+		<label class="editor-field editor-field-wide">
+			<span>Text size</span>
+			<input class="editor-input" type="number" min="1" [value]="nodeSelected().fontSize ?? 14" aria-label="Node text size" (input)="updateNumber('fontSize', $any($event.target).value)" />
+		</label>
+		<label class="editor-field editor-field-wide" [class.cursor-not-allowed]="borderRadiousNotAllowed()">
+			<span>Radius</span>
+			<input class="editor-input" type="number" min="0" [class.cursor-not-allowed]="borderRadiousNotAllowed()" [disabled]="borderRadiousNotAllowed()" [value]="nodeSelected().borderRadius" aria-label="Border radius" (input)="updateNumber('borderRadius', $any($event.target).value)" />
+		</label>
+		<label class="editor-field editor-field-wide">
+			<span>Opacity</span>
+			<input class="editor-range" type="range" min="0" max="1" step="0.05" [value]="nodeSelected().fillOpacity" aria-label="Fill opacity" (input)="updateNumber('fillOpacity', $any($event.target).value)" />
+			<span class="editor-value">{{ (nodeSelected().fillOpacity * 100) | number:'1.0-0' }}%</span>
+		</label>
+	</details>
+</div>

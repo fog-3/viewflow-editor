@@ -1,0 +1,1 @@
+export type WorkspaceShapeType = 'rectangle' | 'rounded' | 'diamond' | 'circle';

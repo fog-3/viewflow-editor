@@ -1,0 +1,68 @@
+<div class="node-editor">
+	<details class="editor-section" open>
+		<summary class="property-label">Content</summary>
+		<label class="editor-field editor-field-wide">
+			<span>Label</span>
+			<input
+				class="editor-input"
+				type="text"
+				[value]="edgeSelected().label ?? ''"
+				aria-label="Edge label"
+				(input)="updateLabel($any($event.target).value)" />
+		</label>
+	</details>
+
+	<details class="editor-section">
+		<summary class="property-label">Style</summary>
+		<label class="editor-field editor-field-color">
+			<span>Color</span>
+			<span class="editor-value">{{ edgeSelected().color }}</span>
+			<input class="editor-color" type="color" [value]="edgeSelected().color" aria-label="Edge color" (input)="updateColor($any($event.target).value)" />
+		</label>
+		<label class="editor-field editor-field-color">
+			<span>Text</span>
+			<span class="editor-value">{{ edgeSelected().textColor ?? '#000000' }}</span>
+			<input class="editor-color" type="color" [value]="edgeSelected().textColor ?? '#000000'" aria-label="Edge text color" (input)="updateTextColor($any($event.target).value)" />
+		</label>
+		<label class="editor-field editor-field-wide">
+			<span>Text size</span>
+			<input class="editor-input" type="number" min="1" [value]="edgeSelected().fontSize ?? 14" aria-label="Edge text size" (input)="updateFontSize($any($event.target).value)" />
+		</label>
+		<label class="editor-field editor-field-wide">
+			<span>Source marker</span>
+			<select class="editor-input" aria-label="Source marker"
+                [value]="edgeSelected().sourceMarker ?? 'none'"
+				(change)="updateSourceMarker($any($event.target).value)"
+                >
+                @for (option of markerOptions; track option.value) {
+                    <option
+                    [value]="option.value === '' ? 'none' : option.value"
+                    [selected]="(edgeSelected().sourceMarker ?? 'none') === (option.value === '' ? 'none' : option.value)"
+                    >
+                    {{ option.label }}
+                    </option>
+                }
+            </select>
+		</label>
+		<label class="editor-field editor-field-wide">
+            <span class="">Target marker</span>
+			<select class="editor-input" aria-label="Target marker"
+                [value]="edgeSelected().targetMarker ?? 'none'"
+				(change)="updateTargetMarker($any($event.target).value)"
+                >
+                @for (option of markerOptions; track option.value) {
+                    <option
+                    [value]="option.value === '' ? 'none' : option.value"
+                    [selected]="(edgeSelected().targetMarker ?? 'none') === (option.value === '' ? 'none' : option.value)"
+                    >
+                    {{ option.label }}
+                    </option>
+                }
+            </select>
+		</label>
+		<label class="editor-field editor-field-wide">
+			<span>Radius</span>
+			<input class="editor-input" type="number" min="0" step="1" [value]="edgeSelected().radious ?? ''" aria-label="Edge radius" (input)="updateRadious($any($event.target).value)" />
+		</label>
+	</details>
+</div>

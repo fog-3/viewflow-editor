@@ -1,0 +1,43 @@
+<aside class="workspace-sidebar" aria-label="Shape palette">
+  <div class="panel-heading">
+    <div class="panel-heading-row">
+      <span class="panel-kicker">Library</span>
+      <button
+        class="panel-close-button"
+        type="button"
+        aria-label="Hide shape library"
+        title="Hide shape library"
+        (click)="workspaceUiService.closeSidebar()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <h2>Shapes</h2>
+  </div>
+
+  <div class="shape-list">
+    <button class="shape-tool" type="button" (click)="selectShape('rectangle')">
+      <span class="shape-preview shape-rectangle"></span>
+      <span>Rectangle</span>
+    </button>
+
+    <button class="shape-tool" type="button" (click)="selectShape('rounded')">
+      <span class="shape-preview shape-rounded"></span>
+      <span>Rounded</span>
+    </button>
+
+    <button class="shape-tool" type="button" (click)="selectShape('diamond')">
+      <span class="shape-preview shape-diamond"></span>
+      <span>Diamond</span>
+    </button>
+
+    <button class="shape-tool" type="button" (click)="selectShape('circle')">
+      <span class="shape-preview shape-circle"></span>
+      <span>Circle</span>
+    </button>
+
+    <button class="shape-tool" type="button" (click)="createEdge()">
+      <span class="shape-preview shape-edge" aria-hidden="true"></span>
+      <span>Edge</span>
+    </button>
+  </div>
+</aside>

@@ -1,0 +1,43 @@
+<aside class="properties-panel" aria-label="Properties panel">
+	<div class="panel-heading">
+		<div class="panel-heading-row">
+			<span class="panel-kicker">Inspector</span>
+			<div class="panel-heading-actions">
+				@if (nodeSelected()) {
+					<button
+						class="panel-action-button panel-delete-button"
+						type="button"
+						aria-label="Delete selected node"
+						title="Delete selected node"
+						(click)="deleteSelectedNode()">
+						<span class="delete-icon" aria-hidden="true"></span>
+					</button>
+				}
+				@if (edgeSelected()) {
+					<button
+						class="panel-action-button panel-delete-button"
+						type="button"
+						aria-label="Delete selected edge"
+						title="Delete selected edge"
+						(click)="deleteSelectedEdge()">
+						<span class="delete-icon" aria-hidden="true"></span>
+					</button>
+				}
+				<button
+					class="panel-close-button"
+					type="button"
+					aria-label="Hide properties panel"
+					title="Hide properties panel"
+					(click)="closeProperties()">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+		</div>
+		<h2>Properties</h2>
+	</div>
+	@if (nodeSelected() !== null && nodeSelected() !== undefined) {
+		<node-properties [nodeSelected]="nodeSelected()!"></node-properties>
+	} @else if (edgeSelected() !== null && edgeSelected() !== undefined) {
+		<edge-properties [edgeSelected]="edgeSelected()!"></edge-properties>
+	}
+</aside>

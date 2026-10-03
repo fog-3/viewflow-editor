@@ -1,0 +1,18 @@
+<div class="toolbar-group" aria-label="History controls">
+	<button
+		class="grid-toggle"
+		type="button"
+		aria-label="Toggle custom canvas grid"
+		title="Toggle custom canvas grid"
+		[attr.aria-pressed]="workspaceUiService.gridVisible()"
+		[class.is-active]="workspaceUiService.gridVisible()"
+		(click)="toggleGrid()">
+		<span>Grid</span>
+		<span class="toggle-indicator" aria-hidden="true"></span>
+	</button>
+	<button class="icon-button" type="button" aria-label="Clear canvas" title="Clear canvas" (click)="clearCanvas()">
+		<span class="clear-icon" aria-hidden="true"></span>
+	</button>
+	<button class="icon-button" type="button" aria-label="Undo" title="Undo" [disabled]="!canUndo()" (click)="undo()">&#8592;</button>
+	<button class="icon-button" type="button" aria-label="Redo" title="Redo" [disabled]="!canRedo()" (click)="redo()">&#8594;</button>
+</div>

@@ -1,0 +1,50 @@
+<section
+  class="workspace-canvas"
+  aria-label="Canvas preview"
+  [class.is-space-pressed]="spacePressed()"
+  [class.is-panning]="isPanning()"
+  (pointerdown)="onPointerDown($event)"
+  (pointermove)="onPointerMove($event)"
+  (pointerup)="onPointerUp()"
+  (pointerleave)="onPointerUp()"
+  (wheel)="onWheel($event)"
+>
+  <div class="canvas-toolbar">
+	@if (isResetViewport()) {
+		<span>Canvas</span>
+	} @else {
+		<span class="zoom-level" (click)="workspaceStateService.resetViewport()">Reset</span>
+	}
+    <span class="zoom-level" (click)="resetZoom()">
+      {{ (workspaceStateService.viewport().zoom * 100) | number:'1.0-0' }}%
+    </span>
+  </div>
+
+  <div #canvasViewport class="canvas-viewport">
+    <div
+      class="canvas-grid"
+      [class.is-hidden]="!workspaceUiService.gridVisible()"
+      aria-hidden="true"
+      [style.backgroundPosition]="gridBackgroundPosition()"
+      [style.backgroundSize]="gridBackgroundSize()">
+    </div>
+
+    <div
+      class="canvas-map"
+      [style.transform]="'translate(' + workspaceStateService.viewport().x + 'px, ' + workspaceStateService.viewport().y + 'px) scale(' + workspaceStateService.viewport().zoom + ')'">
+      <div #graphContainer class="graph-container"></div>
+    </div>
+  </div>
+
+  @if (!workspaceUiService.sidebarOpen()) {
+    <div class="canvas-empty-state">
+      <button
+        class="canvas-open-button"
+        type="button"
+        aria-label="Show shape library"
+        title="Show shape library"
+        (click)="workspaceUiService.openSidebar()">+</button>
+      <p>Select a shape from the library to begin</p>
+    </div>
+  }
+</section>
