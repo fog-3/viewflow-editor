@@ -7,7 +7,7 @@
 <h1 align="center">ViewFlow</h1>
 
 <p align="center">
-  Editor visual para diagramas de flujo, mapas conceptuales, mapas mentales y diagramas basados en nodos.
+  A visual editor for flowcharts, concept maps, mind maps, and node-based diagrams.
 </p>
 
 <p align="center">
@@ -17,28 +17,33 @@
 </p>
 
 <p align="center">
-  <a href="#descripcion">Descripción</a> ·
-  <a href="#funcionalidades">Funcionalidades</a> ·
-  <a href="#instalacion-y-ejecucion-en-local">Instalación</a>
+  <a href="#description">Description</a> ·
+  <a href="#features">Features</a> ·
+  <a href="#local-installation-and-setup">Installation</a>
+</p>
+
+<p align="center">
+  <a href="README.md">🇬🇧 English</a> ·
+  <a href="README.es.md">🇪🇸 Español</a>
 </p>
 
 ---
 
-## Descripción
+## Description
 
-**ViewFlow** es un editor visual de diagramas basado en nodos, diseñado para crear y organizar información de forma rápida e intuitiva.
+**ViewFlow** is a node-based visual diagram editor designed to create and organize information quickly and intuitively.
 
-Puede utilizarse para construir:
+It can be used to create:
 
-- Diagramas de flujo.
-- Mapas conceptuales.
-- Mapas mentales.
-- Diagramas basados en nodos.
-- Esquemas visuales y otras representaciones de información.
+- Flowcharts.
+- Concept maps.
+- Mind maps.
+- Node-based diagrams.
+- Visual schemas and other information representations.
 
-La aplicación está pensada para ofrecer una experiencia sencilla y flexible, permitiendo organizar elementos libremente sobre un lienzo infinito sin la complejidad de una herramienta de diagramación profesional de propósito general.
+The application is designed to provide a simple and flexible experience, allowing elements to be freely arranged on an infinite canvas without the complexity of a general-purpose professional diagramming tool.
 
-ViewFlow incluye modo claro y modo oscuro y permite editar tanto el contenido como la apariencia de los elementos del diagrama.
+ViewFlow supports both light and dark modes and allows users to edit both the content and appearance of diagram elements.
 
 <p align="center">
   <img src="public/ScreenShot ViewFlow.png" alt="ViewFlow screenshot">
@@ -46,88 +51,88 @@ ViewFlow incluye modo claro y modo oscuro y permite editar tanto el contenido co
 
 ---
 
-## Funcionalidades
+## Features
 
-### Creación y manipulación de elementos
+### Element creation and manipulation
 
-- Añadir nodos al lienzo.
-- Crear conexiones entre nodos.
-- Mover nodos y conexiones libremente.
-- Redimensionar nodos.
-- Rotar nodos.
-- Seleccionar uno o varios elementos.
+- Add nodes to the canvas.
+- Create connections between nodes.
+- Freely move nodes and connections.
+- Resize nodes.
+- Rotate nodes.
+- Select one or multiple elements.
 
-### Tipos de nodos
+### Node types
 
-- Rectángulos.
-- Rombos.
-- Círculos.
+- Rectangles.
+- Diamonds.
+- Circles.
 
-### Selección y navegación
+### Selection and navigation
 
-- Selección individual de nodos y conexiones.
-- Selección múltiple con `Ctrl/Cmd + click`.
-- Selección múltiple mediante arrastre sobre el lienzo.
-- Panning con `Space + click`.
+- Individual node and connection selection.
+- Multiple selection with `Ctrl/Cmd + click`.
+- Multiple selection by dragging over the canvas.
+- Panning with `Space + click`.
 - Zoom in / Zoom out.
-- Lienzo infinito.
+- Infinite canvas.
 
 ---
 
-## Edición de nodos
+## Node Editing
 
-Al seleccionar un nodo, aparece un panel lateral con sus propiedades.
+When a node is selected, a side panel displays its properties.
 
-### Propiedades editables
+### Editable properties
 
-- Texto interno.
-- Tamaño del texto.
-- Color del texto.
-- Color del borde.
-- Color de relleno.
-- Opacidad del relleno.
-- Border radius en rectángulos.
+- Internal text.
+- Text size.
+- Text color.
+- Border color.
+- Fill color.
+- Fill opacity.
+- Border radius for rectangles.
 
-### Transformaciones
+### Transformations
 
-- Posición.
-- Tamaño.
-- Rotación.
+- Position.
+- Size.
+- Rotation.
 
-### Acciones
+### Actions
 
-- Eliminar nodo desde el panel de propiedades.
+- Delete nodes from the properties panel.
 
 ---
 
-## Edición de conexiones
+## Connection Editing
 
-Las conexiones entre nodos disponen de herramientas de edición para controlar su apariencia y recorrido.
+Connections between nodes provide advanced editing controls for their appearance and routing.
 
-### Funcionalidades disponibles
+### Available features
 
-- Mover conexiones.
-- Conectar extremos a puertos de los nodos.
-- Utilizar segmentos para crear curvas y vértices intermedios.
-- Modificar la forma de las puntas.
-- Cambiar el color de la conexión.
-- Editar el texto de la etiqueta.
-- Mover etiquetas libremente por el lienzo.
-- Controlar el radio de curvatura de los vértices.
-- Eliminar conexiones desde el panel de propiedades.
+- Move connections.
+- Connect endpoints to node ports.
+- Use segments to create curves and intermediate vertices.
+- Modify arrowhead shapes.
+- Change connection color.
+- Edit connection labels.
+- Freely move labels across the canvas.
+- Control vertex corner radius.
+- Delete connections from the properties panel.
 
-### Propiedades editables
+### Editable properties
 
 - Color.
-- Tipo de flecha en el extremo source.
-- Tipo de flecha en el extremo target.
-- Texto de la etiqueta.
-- Tamaño de la etiqueta.
-- Color de la etiqueta.
-- Posición de la etiqueta.
-- Radio de segmentos y vértices.
+- Arrow type at the target end.
+- Arrow type at the source end.
+- Label text.
+- Label size.
+- Label color.
+- Label position.
+- Segment and vertex radius.
 
-### Tipos de flecha
+### Arrow types
 
 - `— none`
 - `▸ block`
@@ -137,101 +142,101 @@ Las conexiones entre nodos disponen de herramientas de edición para controlar s
 - `⊕ circle plus`
 - `◇ diamond`
 
-### Puertos
+### Ports
 
-- Nodos rectangulares: 16 puertos.
-- Resto de figuras: 8 puertos.
+- Rectangular nodes: 16 ports.
+- Other shapes: 8 ports.
 
 ---
 
-## Lienzo e historial
+## Canvas and History
 
-El lienzo incorpora herramientas para facilitar la navegación y edición de diagramas grandes.
+The canvas provides tools to facilitate navigation and editing of large diagrams.
 
-### Gestión del lienzo
+### Canvas management
 
-- Mostrar / ocultar grid.
+- Show / hide grid.
 - Zoom.
 - Panning.
-- Limpiar lienzo.
-- Reset de vista.
-- Volver al 100% de zoom.
+- Clear canvas.
+- Reset view.
+- Return to 100% zoom.
 
-### Historial
+### History
 
-- Deshacer acciones.
-- Rehacer acciones.
-- Hasta **100 snapshots** almacenados en el historial.
+- Undo actions.
+- Redo actions.
+- Up to **100 snapshots** stored in the history.
 
-### Importación y exportación
+### Import and export
 
-- Importar diagramas mediante JSON.
-- Exportar diagramas mediante JSON.
-- Exportar el diagrama como imagen.
+- Import diagrams as JSON.
+- Export diagrams as JSON.
+- Export diagrams as images.
 
 ---
 
-## Atajos de teclado
+## Keyboard Shortcuts
 
-| Atajo | Acción |
+| Shortcut | Action |
 |---|---|
-| `Ctrl/Cmd + C` | Copiar elementos seleccionados |
-| `Ctrl/Cmd + V` | Pegar elementos copiados |
-| `Ctrl/Cmd + Z` | Deshacer |
-| `Delete / Backspace` | Eliminar elementos seleccionados |
-| `Space + Click` | Moverse por el lienzo |
+| `Ctrl/Cmd + C` | Copy selected elements |
+| `Ctrl/Cmd + V` | Paste copied elements |
+| `Ctrl/Cmd + Z` | Undo |
+| `Delete / Backspace` | Delete selected elements |
+| `Space + Click` | Pan across the canvas |
 
 ---
 
-## Protección frente a pérdida de cambios
+## Protection Against Data Loss
 
-ViewFlow muestra un aviso cuando el usuario intenta abandonar la aplicación mientras existen cambios que podrían no haberse guardado.
+ViewFlow displays a warning when the user attempts to leave the application while there are changes that may not have been saved.
 
-Esto incluye acciones como:
+This includes actions such as:
 
-- Cerrar la pestaña.
-- Recargar la página.
-- Abandonar la aplicación.
+- Closing the tab.
+- Reloading the page.
+- Leaving the application.
 
-Para disponer de una copia de seguridad del diagrama, se recomienda exportarlo en formato JSON.
+To keep a backup of a diagram, exporting it as a JSON file is recommended.
 
 ---
 
-## Instalación y ejecución en local
+## Local Installation and Setup
 
-### Requisitos previos
+### Prerequisites
 
 - Node.js.
 - npm.
 - Angular CLI.
 
-### Instalación
+### Installation
 
-Clona el repositorio:
+Clone the repository:
 
 ```bash
 git clone https://github.com/fog-3/viewflow-editor.git
 ````
 
-Entra en el directorio:
+Navigate to the project directory:
 
 ```bash
 cd viewflow-editor
 ```
 
-Instala las dependencias:
+Install the dependencies:
 
 ```bash
 npm install
 ```
 
-Ejecuta la aplicación:
+Start the application:
 
 ```bash
 ng serve
 ```
 
-Abre el navegador en:
+Open your browser at:
 
 ```text
 http://localhost:4200
@@ -239,7 +244,7 @@ http://localhost:4200
 
 ---
 
-## Tecnologías
+## Technologies
 
 * Angular 21
 * TypeScript
