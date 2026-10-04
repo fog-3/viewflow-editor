@@ -53,6 +53,7 @@ button { font: inherit; }
 	justify-content: space-between;
 	margin: 0 auto;
 	max-width: 1440px;
+	min-height: 98px;
 	padding: 27px clamp(24px, 5vw, 80px);
 }
 .brand, .footer-brand { align-items: center; display: inline-flex; font-weight: 700; gap: 10px; letter-spacing: -.04em; }
@@ -82,7 +83,7 @@ button { font: inherit; }
 .theme-toggle:hover, .theme-toggle:focus-visible { color: var(--accent); }
 .theme-icon { font-size: 16px; line-height: 1; }
 
-.hero-section { align-items: center; display: grid; gap: clamp(44px, 8vw, 130px); grid-template-columns: minmax(280px, .8fr) minmax(420px, 1.2fr); margin: 0 auto; max-width: 1440px; min-height: 680px; padding: 75px clamp(24px, 8vw, 130px) 110px; }
+.hero-section { align-items: center; display: grid; gap: clamp(44px, 8vw, 130px); grid-template-columns: minmax(280px, .8fr) minmax(420px, 1.2fr); margin: 0 auto; max-width: 1440px; min-height: calc(100vh - 98px); min-height: calc(100svh - 98px); padding: 75px clamp(24px, 8vw, 130px) 110px; }
 .hero-copy { max-width: 520px; }
 .eyebrow { color: var(--accent); font-size: 11px; font-weight: 700; letter-spacing: .12em; margin: 0 0 24px; text-transform: uppercase; }
 h1, h2, h3, p { margin-top: 0; }
@@ -191,7 +192,7 @@ h2 { font-size: clamp(48px, 6vw, 86px); line-height: .95; margin-bottom: 27px; }
 	.site-header nav { display: none; }
 	.header-actions { gap: 14px; }
 	.theme-label { display: none; }
-	.hero-section { grid-template-columns: 1fr; min-height: auto; padding-bottom: 90px; padding-top: 55px; }
+	.hero-section { grid-template-columns: 1fr; padding-bottom: 90px; padding-top: 55px; }
 	h1 { font-size: clamp(57px, 16vw, 85px); }
 	.hero-visual { margin: 10px 4% 0; }
 	.story-section { padding-top: 150px; }
