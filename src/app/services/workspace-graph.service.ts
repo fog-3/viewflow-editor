@@ -3,9 +3,6 @@ import { Graph, Clipboard, Export, Keyboard, Selection, Transform, NodePropertie
 import { WorkspaceStateService } from './WorkspaceState.service';
 import { EdgeEndpoint, getPorts, WorkspaceEdge, WorkspaceNode, WorkspaceState } from '../models';
 import {extractColorAndOpacity, getInitialTheme} from '../shared/utils/util-functions';
-import { center } from '@antv/x6/lib/registry/node-anchor/bbox';
-import { height, width } from '@antv/x6/lib/common/dom/position';
-import { opacity } from '@antv/x6/lib/registry/highlighter/opacity';
 
 @Injectable({
   providedIn: 'root',
@@ -492,7 +489,7 @@ export class WorkspaceGraphService {
   private bindGraphEvents(): void {
     if (!this.graph) return;
 
-    this.graph.on('node:moved', ({ node }) => {
+    this.graph.on('node:change:position', ({ node }) => {
       if (this.isSyncing) return;
 
       const position = node.position();
