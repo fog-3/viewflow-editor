@@ -1,6 +1,7 @@
+import { DOCUMENT } from '@angular/common';
 import { Component, inject, signal, ChangeDetectionStrategy } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { WorkspaceGraphService } from './services/workspace-graph.service';
+import { getInitialTheme } from './shared/utils/util-functions';
 
 @Component({
   selector: 'app-root',
@@ -11,4 +12,8 @@ import { WorkspaceGraphService } from './services/workspace-graph.service';
 })
 export class App {
   protected readonly title = signal('ViewFlow');
+
+  constructor() {
+    inject(DOCUMENT).documentElement.dataset['theme'] = getInitialTheme();
+  }
 }
