@@ -32,6 +32,10 @@
 
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
+::selection {
+	background-color: color-mix(in srgb, var(--accent) 35%, transparent);
+	color: var(--ink);
+}
 body {
 	margin: 0;
 	background: var(--paper);
@@ -101,22 +105,48 @@ h1 em, h2 em { color: var(--accent); font-style: italic; }
 .visual-caption { color: var(--muted); display: flex; font-size: 11px; gap: 15px; margin: 29px 0 0 14%; }
 .visual-caption span, .use-case-number { color: var(--accent); font-weight: 700; }
 
-.story-section { background: var(--ink); color: var(--paper); padding: 145px clamp(24px, 8vw, 130px) 120px; position: relative; }
+.story-section { background: var(--ink); color: var(--paper); padding: 100px clamp(24px, 8vw, 130px) 80px; position: relative; }
 .story-intro { margin: 0 auto; max-width: 800px; text-align: center; }
 .story-intro .eyebrow { color: var(--lime); }
 h2 { font-size: clamp(48px, 6vw, 86px); line-height: .95; margin-bottom: 27px; }
 .story-intro > p:last-child { color: var(--muted); font-size: 16px; line-height: 1.6; }
-.story-diagram { animation: story-zoom linear both; animation-range: entry 10% cover 48%; animation-timeline: view(); height: 370px; margin: 85px auto 110px; max-width: 750px; position: relative; }
-.diagram-node { align-items: center; border: 1px solid var(--paper); display: flex; font-family: var(--serif); justify-content: center; position: absolute; text-align: center; }
-.node-main { background: var(--accent); border-color: var(--accent); border-radius: 50%; color: #fff; height: 154px; left: calc(50% - 77px); top: 106px; transform: rotate(-4deg); width: 154px; }
-.node-secondary { border-radius: 2px; height: 65px; width: 180px; }
-.node-top { left: 2%; top: 18px; transform: rotate(-5deg); }
-.node-bottom { bottom: 18px; right: 2%; transform: rotate(4deg); }
-.diagram-line { border-top: 1px dashed var(--muted); height: 1px; position: absolute; transform-origin: left center; width: 240px; }
-.line-one { left: 25%; top: 111px; transform: rotate(21deg); }
-.line-two { left: 57%; top: 235px; transform: rotate(22deg); }
-.diagram-mark { color: var(--lime); font-family: var(--serif); font-size: 38px; left: 50%; position: absolute; top: 38px; transform: translateX(-50%); }
-.use-cases { border-top: 1px solid var(--line); display: grid; grid-template-columns: repeat(4, 1fr); margin: 0 auto; max-width: 1180px; }
+.story-diagram {
+	animation: story-zoom linear both;
+	animation-range: entry 10% cover 48%;
+	animation-timeline: view();
+	background: radial-gradient(ellipse at 52% 48%, color-mix(in srgb, var(--accent) 10%, transparent), transparent 58%), color-mix(in srgb, var(--paper) 3%, transparent);
+	border: 1px solid color-mix(in srgb, var(--paper) 17%, transparent);
+	border-radius: 18px;
+	box-shadow: 0 28px 80px color-mix(in srgb, #000 22%, transparent), inset 0 1px 0 color-mix(in srgb, var(--paper) 7%, transparent);
+	height: 488px;
+	margin: 30px auto 30px;
+	max-width: 1040px;
+	overflow: hidden;
+	padding-top: 57px;
+	position: relative;
+}
+.flow-diagram-heading { align-items: center; color: var(--muted); display: flex; font-size: 9px; font-weight: 700; inset: 0 22px auto; justify-content: space-between; letter-spacing: .15em; padding-top: 20px; position: absolute; }
+.flow-diagram-key { align-items: center; display: inline-flex; gap: 8px; letter-spacing: .06em; }
+.flow-diagram-key i { background: var(--lime); border-radius: 50%; box-shadow: 0 0 12px color-mix(in srgb, var(--lime) 65%, transparent); display: inline-block; height: 6px; width: 6px; }
+.flow-connectors { height: 410px; inset: 57px 0 auto; overflow: visible; position: absolute; width: 100%; }
+.flow-connectors marker path { fill: var(--accent); }
+.flow-path { fill: none; stroke-linecap: round; stroke-linejoin: round; stroke-width: 2; }
+.flow-path-main { marker-end: url(#flow-arrow); stroke: var(--accent); }
+.flow-path-branch { marker-end: url(#flow-arrow); stroke: color-mix(in srgb, var(--lime) 80%, var(--paper)); stroke-dasharray: 5 7; }
+.flow-path-return { marker-end: url(#flow-arrow); stroke: color-mix(in srgb, var(--lime) 80%, var(--paper)); stroke-dasharray: 3 8; opacity: .7; }
+.flow-diagram-grid { display: grid; }
+.story-diagram > .flow-node { align-self: center; display: flex; flex-direction: column; justify-content: center; min-height: 104px; padding: 17px 18px; position: absolute; width: 18%; z-index: 1; }
+.flow-node { border: 1px solid color-mix(in srgb, var(--paper) 24%, transparent); border-radius: 12px; box-shadow: 0 12px 30px color-mix(in srgb, #000 16%, transparent); }
+.flow-request { background: var(--paper); color: var(--ink); left: 3%; top: 262px; transform: translateY(-50%) rotate(-1deg); }
+.flow-clarify { background: var(--accent); border-color: var(--accent); color: #fff; left: 28.5%; top: 262px; transform: translateY(-50%) rotate(1deg); }
+.flow-decision { background: var(--lime); border: 0; border-radius: 14px; color: #20271e; left: 53.5%; min-height: 120px !important; top: 262px; transform: translateY(-50%) rotate(-1deg); width: 18% !important; }
+.flow-launch { background: color-mix(in srgb, var(--paper) 8%, transparent); border-color: color-mix(in srgb, var(--lime) 55%, transparent); color: var(--paper); left: 78.5%; top: 132px; transform: translateY(-50%); }
+.flow-revisit { background: color-mix(in srgb, var(--paper) 8%, transparent); border-color: color-mix(in srgb, var(--paper) 28%, transparent); color: var(--paper); left: 78.5%; top: 392px; transform: translateY(-50%); }
+.flow-node-meta { align-items: center; color: inherit; display: flex; font-size: 8px; font-weight: 700; gap: 7px; letter-spacing: .12em; margin-bottom: 10px; opacity: .72; }
+.flow-node-meta > span { align-items: center; background: color-mix(in srgb, currentColor 13%, transparent); border-radius: 999px; display: inline-flex; font-size: 8px; justify-content: center; min-height: 19px; min-width: 24px; padding: 0 5px; }
+.flow-node strong { font-family: var(--serif); font-size: clamp(15px, 1.55vw, 20px); font-weight: 400; letter-spacing: -.03em; line-height: 1.1; }
+.flow-node small { color: inherit; font-size: 10px; line-height: 1.4; margin-top: 7px; opacity: .72; }
+.use-cases { border-top: 1px solid var(--line); display: grid; grid-template-columns: repeat(4, 1fr); margin: 0 auto; max-width: 1180px;}
 .use-case-card { animation: card-rise linear both; animation-range: entry 5% cover 30%; animation-timeline: view(); border-right: 1px solid var(--line); min-height: 190px; padding: 25px 25px 10px 0; }
 .use-case-card:not(:first-child) { padding-left: 25px; }
 .use-case-card:last-child { border-right: 0; }
@@ -164,8 +194,13 @@ h2 { font-size: clamp(48px, 6vw, 86px); line-height: .95; margin-bottom: 27px; }
 	.hero-section { grid-template-columns: 1fr; min-height: auto; padding-bottom: 90px; padding-top: 55px; }
 	h1 { font-size: clamp(57px, 16vw, 85px); }
 	.hero-visual { margin: 10px 4% 0; }
-	.story-section { padding-top: 100px; }
-	.story-diagram { margin-bottom: 75px; transform: scale(.86); }
+	.story-section { padding-top: 150px; }
+	.story-diagram { display: grid; gap: 12px; grid-template-columns: repeat(2, minmax(0, 1fr)); height: auto; margin-bottom: 75px; overflow: visible; padding: 58px 18px 20px; }
+	.flow-connectors { display: none; }
+	.story-diagram > .flow-node { left: auto; min-height: 100px; position: relative; top: auto; transform: none; width: auto !important; }
+	.flow-request, .flow-clarify, .flow-decision { grid-column: 1 / -1; }
+	.flow-decision { min-height: 95px !important; }
+	.flow-node strong { font-size: 19px; }
 	.use-cases { grid-template-columns: repeat(2, 1fr); }
 	.use-case-card:nth-child(2) { border-right: 0; }
 	.use-case-card:nth-child(3), .use-case-card:nth-child(4) { border-top: 1px solid var(--line); }
@@ -177,7 +212,8 @@ h2 { font-size: clamp(48px, 6vw, 86px); line-height: .95; margin-bottom: 27px; }
 	.brand { font-size: 14px; }
 	.header-cta { padding: 9px 12px; }
 	.hero-actions { align-items: flex-start; flex-direction: column; gap: 20px; }
-	.story-diagram { margin-left: -35px; margin-right: -35px; transform: scale(.72); }
+	.story-diagram { gap: 10px; grid-template-columns: 1fr; margin-left: 0; margin-right: 0; padding: 56px 14px 16px; }
+	.flow-request, .flow-clarify, .flow-decision, .flow-launch, .flow-revisit { grid-column: 1; }
 	.use-case-card { min-height: 220px; }
 }
 

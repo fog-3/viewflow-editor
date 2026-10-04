@@ -1,17 +1,52 @@
 <section class="story-section" id="story" aria-labelledby="story-title">
 	<div class="story-intro">
-		<p class="eyebrow">From first thought to shared direction</p>
-		<h2 id="story-title">Ideas get better when you can <em>see</em> them.</h2>
-		<p>Start rough. Move quickly. Let the connections show you what matters next.</p>
+		<p class="eyebrow">Turn tangled steps into a clear path</p>
+		<h2 id="story-title">Make the next step <em>obvious.</em></h2>
+		<p>Map a real process, see where decisions lead, and give everyone the same picture to move forward with.</p>
 	</div>
 
-	<div class="story-diagram" aria-label="ViewFlow diagram preview">
-		<div class="diagram-line line-one" aria-hidden="true"></div>
-		<div class="diagram-line line-two" aria-hidden="true"></div>
-		<div class="diagram-node node-main">The big picture</div>
-		<div class="diagram-node node-secondary node-top">What changes?</div>
-		<div class="diagram-node node-secondary node-bottom">What comes next?</div>
-		<div class="diagram-mark" aria-hidden="true">+</div>
+	<div class="story-diagram" role="img" aria-label="A process flow: a new request is clarified, a readiness decision leads either to starting the work or revisiting unclear steps.">
+		<div class="flow-diagram-heading">
+			<span>ONE PROCESS, MADE VISIBLE</span>
+			<span class="flow-diagram-key"><i aria-hidden="true"></i> connected thinking</span>
+		</div>
+		<svg class="flow-connectors" viewBox="0 0 1000 410" preserveAspectRatio="none" aria-hidden="true">
+			<defs>
+				<marker id="flow-arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto" markerUnits="strokeWidth">
+					<path d="M0,0 L8,4 L0,8 Z" />
+				</marker>
+			</defs>
+			<path class="flow-path flow-path-main" d="M215 205 H285" />
+			<path class="flow-path flow-path-main" d="M465 205 H535" />
+			<path class="flow-path flow-path-branch" d="M715 205 C755 205 745 75 785 75" />
+			<path class="flow-path flow-path-branch" d="M715 205 C755 205 745 335 785 335" />
+			<path class="flow-path flow-path-return" d="M785 335 C735 395 375 395 375 255" />
+		</svg>
+
+		<div class="flow-node flow-request">
+			<span class="flow-node-meta"><span>01</span> THE INPUT</span>
+			<strong>A new request</strong>
+			<small>Something needs to change.</small>
+		</div>
+		<div class="flow-node flow-clarify">
+			<span class="flow-node-meta"><span>02</span> MAKE IT CLEAR</span>
+			<strong>Define the steps</strong>
+			<small>Turn the ask into a sequence.</small>
+		</div>
+		<div class="flow-node flow-decision">
+			<span class="flow-node-meta"><span>03</span> DECISION</span>
+			<strong>Ready to move forward?</strong>
+		</div>
+		<div class="flow-node flow-outcome flow-launch">
+			<span class="flow-node-meta"><span>YES</span> THE NEXT STEP</span>
+			<strong>Start the work</strong>
+			<small>Everyone knows what happens next.</small>
+		</div>
+		<div class="flow-node flow-outcome flow-revisit">
+			<span class="flow-node-meta"><span>NOT YET</span> REFINE</span>
+			<strong>Clarify the gaps</strong>
+			<small>Then follow the flow again.</small>
+		</div>
 	</div>
 
 	<div class="use-cases" aria-label="ViewFlow use cases">
